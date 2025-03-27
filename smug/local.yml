@@ -1,0 +1,14 @@
+session: local
+
+root: ~/
+
+windows:
+  - name: local
+    commands:
+      - cd ~/.config/nvim
+  - name: Notes
+    commands:
+      - cd ~/Documents/Notes
+  - name: Pentest
+    commands:
+      - cd ~/
