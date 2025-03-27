@@ -1,3 +1,6 @@
 [submodule "nvim"]
 	path = nvim
 	url = git@github.com:abzcoding/nv.git
+[submodule "lvim"]
+	path = lvim
+	url = git@github.com:abzcoding/lvim.git
