@@ -1,0 +1,3 @@
+# Zed
+
+`~/.config/zed` folder

@@ -1,0 +1,77 @@
+[
+  {
+    "label": "Lazygit",
+    "command": "lazygit",
+    "working_directory": "${ZED_WORKTREE_ROOT}",
+    "hide": "on_success",
+    "args": [],
+    "env": {},
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  },
+  {
+    "label": "cargo release run",
+    "command": "cargo run -q --release",
+    "env": {},
+    "working_directory": "${ZED_WORKTREE_ROOT}",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "no_focus",
+    "reveal_target": "dock",
+    "hide": "never",
+    "shell": {
+      "program": "sh"
+    },
+    "show_summary": false,
+    "show_output": false
+  },
+  {
+    "label": "leptos test",
+    "command": "cargo leptos end-to-end",
+    "env": {},
+    "working_directory": "${ZED_WORKTREE_ROOT}",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "no_focus",
+    "reveal_target": "dock",
+    "hide": "never",
+    "shell": {
+      "program": "sh"
+    },
+    "show_summary": false,
+    "show_output": false
+  },
+  {
+    "label": "leptos build",
+    "command": "cargo leptos build",
+    "env": {},
+    "working_directory": "${ZED_WORKTREE_ROOT}",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "no_focus",
+    "reveal_target": "dock",
+    "hide": "never",
+    "shell": {
+      "program": "sh"
+    },
+    "show_summary": false,
+    "show_output": false
+  },
+  {
+    "label": "leptos watch",
+    "command": "cargo leptos watch",
+    "env": {},
+    "working_directory": "${ZED_WORKTREE_ROOT}",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "no_focus",
+    "reveal_target": "dock",
+    "hide": "never",
+    "shell": {
+      "program": "sh"
+    },
+    "show_summary": false,
+    "show_output": false
+  }
+]

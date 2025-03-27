@@ -1,0 +1,161 @@
+{
+  "edit_predictions": {
+    "disabled_globs": [
+      "~/dev/*",
+      "**/.env*",
+      "**/*.pem",
+      "**/*.key",
+      "**/*.cert",
+      "**/*.crt",
+      "**/secrets.yml"
+    ],
+    "mode": "subtle",
+    "copilot": {
+      "proxy": null,
+      "proxy_no_verify": null
+    },
+    "enabled_in_assistant": false
+  },
+  "format_on_save": "off",
+  "icon_theme": "Catppuccin Macchiato",
+  "show_edit_predictions": true,
+  "assistant": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-3-7-sonnet"
+    },
+    "version": "2"
+  },
+  "base_keymap": "VSCode",
+  "theme": "Catppuccin Macchiato",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "vim_mode": true,
+  "cursor_blink": false,
+  "relative_line_numbers": true,
+  "scrollbar": { "show": "never" },
+  "scroll_beyond_last_line": "one_page",
+  "vertical_scroll_margin": 0,
+  "gutter": {
+    "line_numbers": true
+  },
+  "vim": {
+    "use_system_clipboard": "never",
+    "use_multiline_find": true,
+    "use_smartcase_find": true,
+    "toggle_relative_line_numbers": true,
+    "highlight_on_yank_duration": 50
+  },
+  "ui_font_size": 14,
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "ui_font_family": "FiraCode Nerd Font",
+  "buffer_font_size": 13,
+  "buffer_line_height": { "custom": 1.7 },
+  "terminal": {
+    "font_family": "FiraCode Nerd Font",
+    "font_size": 13,
+    "breadcrumbs": false,
+    "button": false,
+    "env": {
+      "EDITOR": "zed --wait"
+    },
+    "dock": "right"
+  },
+  "tab_bar": {
+    "show": true,
+    "show_nav_history_buttons": false,
+    "show_tab_bar_buttons": false
+  },
+  "tabs": {
+    "close_position": "right",
+    "file_icons": true,
+    "git_status": true,
+    "activate_on_close": "history",
+    "always_show_close_button": false,
+    "show_diagnostics": "errors"
+  },
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": true,
+    "show_parameter_hints": true,
+    "show_other_hints": true
+  },
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "outline_panel": {
+    "dock": "right"
+  },
+  "centered_layout": {
+    "left_padding": 0.15,
+    "right_padding": 0.15
+  },
+  "language_overrides": {
+    "Rust": {
+      "inlay_hints": {
+        "enabled": true
+      }
+    }
+  },
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        "checkOnSave": {
+          "command": "clippy"
+        }
+      }
+    },
+    "ansible-language-server": {
+      "settings": {
+        "ansible": {
+          "path": "ansible"
+        },
+        "executionEnvironment": {
+          "enabled": false
+        },
+        "python": {
+          "interpreterPath": "python3"
+        },
+        "validation": {
+          "enabled": true,
+          "lint": {
+            "enabled": true,
+            "path": "ansible-lint"
+          }
+        }
+      }
+    }
+  },
+  "file_types": {
+    "Ansible": [
+      "**.ansible.yml",
+      "**.ansible.yaml",
+      "**/defaults/*.yml",
+      "**/defaults/*.yaml",
+      "**/meta/*.yml",
+      "**/meta/*.yaml",
+      "**/tasks/*.yml",
+      "**/tasks/*.yml",
+      "**/tasks/*.yaml",
+      "**/handlers/*.yml",
+      "**/handlers/*.yaml",
+      "**/group_vars/*.yml",
+      "**/group_vars/*.yaml",
+      "**/playbooks/*.yaml",
+      "**/playbooks/*.yml",
+      "**playbook*.yaml",
+      "**playbook*.yml"
+    ],
+    "Dockerfile": ["Dockerfile", "Dockerfile.*"],
+    "JSON": ["json", "jsonc", "*.code-snippets"]
+  },
+  "auto_install_extensions": {
+    "html": true,
+    "dockerfile": true,
+    "docker-compose": true,
+    "catppuccin": true,
+    "toml": true
+  }
+}

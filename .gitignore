@@ -1,0 +1,6 @@
+zed/conversations
+zed/prompts
+zed/themes
+.DS_Store
+.tmp*
+*_backup*

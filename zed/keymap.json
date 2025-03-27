@@ -1,0 +1,125 @@
+[
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "j k": [
+        "workspace::SendKeystrokes",
+        "escape cmd-s"
+      ]
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "space g g": [
+        "task::Spawn",
+        {
+          "task_name": "Lazygit",
+          "reveal_target": "center"
+        }
+      ],
+      "space c r": "editor::Rename",
+      "g a": "editor::ToggleCodeActions",
+      "g d": "editor::GoToDefinition",
+      "g D": "editor::GoToDefinitionSplit",
+      "g i": "editor::GoToImplementation",
+      "g I": "editor::GoToImplementationSplit",
+      "g t": "editor::GoToTypeDefinition",
+      "g v":"editor::GoToDefinitionSplit",
+      "g T": "editor::GoToTypeDefinitionSplit",
+      "g r": "editor::FindAllReferences",
+      "] d": "editor::GoToDiagnostic",
+      "[ d": "editor::GoToPreviousDiagnostic",
+      "s s": "outline::Toggle",
+      "s S": "project_symbols::Toggle",
+      "space x x": "diagnostics::Deploy",
+      "] h": "editor::GoToHunk",
+      "[ h": "editor::GoToPreviousHunk",
+      "shift-l": "pane::ActivateNextItem",
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-x": "pane::CloseActiveItem",
+      "ctrl-s": "workspace::Save",
+      "space space": "file_finder::Toggle",
+      "space r f": "task::Spawn",
+      "space r l": "task::Rerun",
+      "space c f": "editor::Format"
+    }
+  },
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      "space /": "vim::ToggleComments",
+      "ctrl-n": "vim::SelectLargerSyntaxNode",
+      "ctrl-shift-n": "vim::SelectSmallerSyntaxNode",
+      "space g d": "editor::ToggleSelectedDiffHunks",
+      "space g r": "git::Restore",
+      "space t i": "editor::ToggleInlayHints",
+      "space t e": "editor::ToggleEditPrediction",
+      "space t s": "editor::ToggleSoftWrap",
+      "space t z": "workspace::ToggleCenteredLayout",
+      "space m p": "markdown::OpenPreview",
+      "space m P": "markdown::OpenPreviewToTheSide",
+      "space f p": "projects::OpenRecent",
+      "space e": "project_panel::ToggleFocus",
+      "space s w": "pane::DeploySearch",
+      "space a c": "assistant::ToggleFocus",
+      "g f": "editor::OpenExcerpts"
+    }
+  },
+  {
+    "context": "Terminal",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-w": null,
+      "ctrl-w left": "workspace::ActivatePaneLeft",
+      "ctrl-w right": "workspace::ActivatePaneRight",
+      "ctrl-w up": "workspace::ActivatePaneUp",
+      "ctrl-w down": "workspace::ActivatePaneDown"
+    }
+  },
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w j": "workspace::ActivatePaneDown"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "a": "project_panel::NewFile",
+      "A": "project_panel::NewDirectory",
+      "r": "project_panel::Rename",
+      "d": "project_panel::Delete",
+      "x": "project_panel::Cut",
+      "c": "project_panel::Copy",
+      "p": "project_panel::Paste",
+      "q": "workspace::ToggleLeftDock",
+      "space e": "workspace::ToggleLeftDock",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
+    }
+  },
+  {
+    "context": "EmptyPane || SharedScreen || vim_mode == normal",
+    "bindings": {
+      "space r t": [
+        "editor::SpawnNearestTask",
+        {
+          "reveal": "no_focus"
+        }
+      ]
+    }
+  },
+  {
+    "context": "vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      "s": "vim::PushSneak",
+      "shift-s": "vim::PushSneakBackward"
+    }
+  }
+]
