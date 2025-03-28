@@ -178,8 +178,8 @@ keybinding:
     bulkMenu: b
 os:
   editPreset: 'vim'
-  edit: lvim {{filename}}
-  editAtLine: 'lvim --line={{line}} {{filename}}'
+  edit: nvim {{filename}}
+  editAtLine: 'nvim --line={{line}} {{filename}}'
   editInTerminal: true
 disableStartupPopups: false
 customCommands:
