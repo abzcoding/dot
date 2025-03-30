@@ -1,5 +1,6 @@
 adjust-cell-height = 25%
-background-opacity = 0.95
+background = "#1e1e2e"
+background-opacity = 0.98
 font-family = "FiraCode Nerd Font"
 font-family-bold = "FiraCode Nerd Font"
 font-family-bold-italic = "Iosevka NF"
@@ -9,6 +10,7 @@ font-size = 13
 font-style-bold = "Medium"
 font-style-bold-italic = "Medium"
 font-style-italic = "Regular"
+foreground = "#a9b1d6"
 gtk-titlebar = false
 macos-auto-secure-input = true
 macos-non-native-fullscreen = true
