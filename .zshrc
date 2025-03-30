@@ -17,39 +17,7 @@ HISTDUP=erase
 export NVM_DIR=~/.nvm
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
-if [[ $TERM_PROGRAM == "WezTerm" ]]; then
-  export SPACESHIP_DOCKER_SHOW=false
-  export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-  export GPG_TTY=$(tty)
-  setopt HIST_IGNORE_SPACE
-  setopt SHARE_HISTORY
-  eval "$(starship init zsh)"
-  bindkey '^R' history-incremental-search-backward
-  autoload -U up-line-or-beginning-search
-  autoload -U down-line-or-beginning-search
-  zle -N up-line-or-beginning-search
-  zle -N down-line-or-beginning-search
-  bindkey "^[[A" up-line-or-beginning-search # Up
-  bindkey "^[[B" down-line-or-beginning-search # Down
-  zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-  autoload -Uz compinit
-  compinit
-  export LDFLAGS="-L/opt/homebrew/opt/llvm/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm/lib/c++"
-  export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-  export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:$PATH"
-  export CC=clang
-  export CXX=clang++
-  export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-  export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-
-  PATH="/Users/abz/perl5/bin${PATH:+:${PATH}}"; export PATH;
-  PERL5LIB="/Users/abz/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-  PERL_LOCAL_LIB_ROOT="/Users/abz/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-  PERL_MB_OPT="--install_base \"/Users/abz/perl5\""; export PERL_MB_OPT;
-  PERL_MM_OPT="INSTALL_BASE=/Users/abz/perl5"; export PERL_MM_OPT;
-  eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
-  ___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"; if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi
-else
+if [[ -z $WEZTERM_CONFIG_FILE ]]; then
   ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
   if [ ! -d "$ZINIT_HOME" ]; then
     mkdir -p "$(dirname $ZINIT_HOME)"
@@ -96,6 +64,38 @@ else
   zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'exa -1 --color=always --group-directories-first --icons $realpath'
 
   eval "$(fzf --zsh)"
+else
+  export SPACESHIP_DOCKER_SHOW=false
+  export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+  export GPG_TTY=$(tty)
+  setopt HIST_IGNORE_SPACE
+  setopt SHARE_HISTORY
+  eval "$(starship init zsh)"
+  bindkey '^R' history-incremental-search-backward
+  autoload -U up-line-or-beginning-search
+  autoload -U down-line-or-beginning-search
+  zle -N up-line-or-beginning-search
+  zle -N down-line-or-beginning-search
+  bindkey "^[[A" up-line-or-beginning-search # Up
+  bindkey "^[[B" down-line-or-beginning-search # Down
+  zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+  autoload -Uz compinit
+  compinit
+  export LDFLAGS="-L/opt/homebrew/opt/llvm/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm/lib/c++"
+  export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+  export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:$PATH"
+  export CC=clang
+  export CXX=clang++
+  export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+
+  PATH="/Users/abz/perl5/bin${PATH:+:${PATH}}"; export PATH;
+  PERL5LIB="/Users/abz/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+  PERL_LOCAL_LIB_ROOT="/Users/abz/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+  PERL_MB_OPT="--install_base \"/Users/abz/perl5\""; export PERL_MB_OPT;
+  PERL_MM_OPT="INSTALL_BASE=/Users/abz/perl5"; export PERL_MM_OPT;
+  eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
+  ___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"; if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi
 fi
 
 source ~/.aliasses
