@@ -189,6 +189,7 @@ ext ()
   fi
 }
 alias gl="git --no-pager log --topo-order --graph --abbrev-commit --decorate --color --pretty=format:'%C(red)%H%C(r) [%C(bold blue)%an%C(r)]: %n%n %C(white)%s%C(r) %C(dim white) %C(bold green)(%ar)%C(r) %C(bold yellow)%d%C(r)%n' --relative-date | emojify | less --RAW-CONTROL-CHARS"
+alias glog='git log --graph --decorate --pretty=oneline --abbrev-commit --all'
 alias we="curl 'wttr.in/Bojnord?qF'"
 alias sl="smug start local"
 alias htop="sudo htop"
