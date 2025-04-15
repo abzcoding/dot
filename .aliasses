@@ -158,7 +158,7 @@ alias update_lvim='git -C "~/.local/share/lunarvim/lvim" pull ; find ~/.local/sh
 
 # Random ones
 alias http-serve="devd -CL -a -p 8000 -t ."
-alias gitc="git clone --branch master --depth 1"
+alias gitc="git clone --branch main --depth 1"
 alias vc="v . -c NERDTree"
 alias ll="exa -al --color=always --group-directories-first --icons"
 alias l.='exa -a | egrep "^\."'
