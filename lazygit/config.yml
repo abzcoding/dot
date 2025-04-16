@@ -27,7 +27,7 @@ gui:
 git:
   paging:
     colorArg: always
-    pager: ""
+    pager: diff-so-fancy
     useConfig: false
   commit:
     signOff: true
