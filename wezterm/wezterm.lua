@@ -34,7 +34,6 @@ end
 
 return {
 	bidi_enabled = true,
-	experimental_bidi = true,
 	bidi_direction = "LeftToRight",
 	color_scheme = "Catppuccin Mocha",
 	font = font_with_fallback({
