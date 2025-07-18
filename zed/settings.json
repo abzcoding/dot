@@ -14,15 +14,17 @@
       "proxy": null,
       "proxy_no_verify": null
     },
-    "enabled_in_assistant": false
+    "enabled_in_text_threads": false
   },
   "format_on_save": "off",
   "icon_theme": "Catppuccin Macchiato",
   "show_edit_predictions": true,
-  "assistant": {
+  "agent": {
+    "always_allow_tool_actions": true,
+    "default_profile": "write",
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-3.7-sonnet-thought"
+      "model": "claude-sonnet-4"
     },
     "version": "2"
   },
@@ -73,7 +75,7 @@
     "file_icons": true,
     "git_status": true,
     "activate_on_close": "history",
-    "always_show_close_button": false,
+    "show_close_button": "hover",
     "show_diagnostics": "errors"
   },
   "inlay_hints": {
