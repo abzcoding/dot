@@ -7,8 +7,9 @@
   local = yellow
   remote = green
 [color "diff"]
-  meta = yellow bold
-  frag = magenta bold
+  meta = black bold
+  frag = magenta
+  whitespace = yellow reverse
   old = red
   new = green
 [alias]
@@ -115,13 +116,28 @@
 [core]
   autocrlf = false
   editor = nvim
+  compression = 9
+  whitespace = error
+  preloadindex = true
 [advice]
   statusHints = false
+  addEmptyPathspec = false
+  pushNonFastForward = false
+[status]
+  branch = true
+  showStash = true
+  showUntrackedFiles = all
 [diff]
-  # Git diff will use (i)ndex, (w)ork tree, (c)ommit and (o)bject
-  # instead of a/b/c/d as prefixes for patches
-  # mnemonicprefix = true
-  # algorithm = patience
+  context = 3
+  renames = copies
+  interHunkContext = 10
+; [pager]
+;   diff = diff-so-fancy
+[diff-so-fancy]
+  markEmptyLines = false
+[interactive]
+  diffFilter = diff-so-fancy --patch
+  singlekey = true
 [rerere]
   # Remember my merges
   # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
@@ -136,7 +152,7 @@
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 [init]
-	defaultBranch = master
+	defaultBranch = main
 [gpg]
 	program = /opt/homebrew/bin/gpg
 [pull]

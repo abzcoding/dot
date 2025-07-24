@@ -188,7 +188,7 @@ ext ()
     echo "'$1' is not a valid file"
   fi
 }
-alias gl="git --no-pager log --topo-order --graph --abbrev-commit --decorate --color --pretty=format:'%C(red)%H%C(r) [%C(bold blue)%an%C(r)]: %n%n %C(white)%s%C(r) %C(dim white) %C(bold green)(%ar)%C(r) %C(bold yellow)%d%C(r)%n' --relative-date | emojify | less --RAW-CONTROL-CHARS"
+alias gl="git --no-pager log --topo-order --graph --abbrev-commit --decorate --color --pretty=format:'%C(red)%H%C(red) [%C(bold blue)%an%C(red)]: %n%n %C(white)%s%C(red) %C(dim white) %C(bold green)(%ared)%C(red) %C(bold yellow)%d%C(red)%n' --relative-date | less --RAW-CONTROL-CHARS"
 alias glog='git log --graph --decorate --pretty=oneline --abbrev-commit --all'
 alias we="curl 'wttr.in/Bojnord?qF'"
 alias sl="smug start local"
@@ -197,6 +197,7 @@ alias ltree="exa --tree --color=always --icons --level=3 ."
 alias gotop="sudo /usr/local/bin/gotop"
 function crate(){curl -s https://crates.io/api/v1/crates/"$@"|jq .crate.max_version}
 alias gs='git status'
+alias gd="git diff --output-indicator-new=' ' --output-indicator-old=' '"
 alias jrnl=" jrnl"
 alias hget=" hget"
 alias ydl=" youtube-dl"
