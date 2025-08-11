@@ -7,6 +7,7 @@ export GOPATH=$HOME/dev
 export PATH=$PATH:$HOME/.alire/bin
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export MANPAGER='nvim +Man!'
 export EDITOR=nvim
 HISTFILE=~/.zsh_history
