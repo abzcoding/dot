@@ -23,8 +23,8 @@
     "always_allow_tool_actions": true,
     "default_profile": "write",
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4-thinking"
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4.5"
     },
   },
   "base_keymap": "VSCode",
@@ -84,7 +84,7 @@
     "show_other_hints": true
   },
   "features": {
-    "edit_prediction_provider": "zed"
+    "edit_prediction_provider": "copilot"
   },
   "outline_panel": {
     "dock": "right"
