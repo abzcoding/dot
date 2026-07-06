@@ -17,6 +17,10 @@ SAVEHIST=$HISTSIZE
 HISTDUP=erase
 export NVM_DIR=~/.nvm
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export HOMEBREW_NO_AUTO_UPDATE=1
+export PYENV_DISABLE_REHASH=1
+export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 40% --preview='bat -p --color=always {}'"
+export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-preview"
 
 if [[ -z $WEZTERM_CONFIG_FILE ]]; then
   ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -101,6 +105,6 @@ fi
 
 source ~/.aliasses
 eval "$(zoxide init zsh)"
-eval "$(pyenv init -)"
+eval "$(pyenv init - --no-rehash zsh)"
 eval "$(pyenv virtualenv-init -)"
 source $(brew --prefix nvm)/nvm.sh

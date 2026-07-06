@@ -7,7 +7,7 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
-alias ss="TERM=xterm-256color ssh"
+alias ssc="TERM=xterm-256color ssh"
 
 # programs
 alias slt='open -a "Sublime Text"'
@@ -152,7 +152,7 @@ alias mount='colourify mount'
 alias ps='colourify ps'
 alias mtr='sudo /opt/homebrew/bin/grc -es --colour=auto mtr -n'
 alias df='colourify df'
-alias update="brew update ; brew upgrade ; brew upgrade --cask; brew cleanup ; tldr --update ; rm -rf ~/Downloads/Software/bypass-paywalls-chrome-clean-master && wget -O bypass.zip 'https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass-paywalls-chrome-clean-master.zip&inline=false' && unzip bypass.zip -d ~/Downloads/Software/bypass-paywalls-chrome-clean-master; rm bypass.zip ; kubectl krew update ; kubectl krew upgrade ; rustup update --force ; cargo install-update -a ; cd ~/Downloads/Software/neovim && git pull && sudo CMAKE_BUILD_TYPE=Release make install; cd ~/.config/nvim ; nuclei -ut ; /usr/bin/find ~/Downloads/Software -maxdepth 4 -name '.git' -prune -type d -print| sed 's/.git//'| parallel -j8 'echo {} && git -C {} pull' ; brew upgrade --cask wezterm@nightly --no-quarantine --greedy-latest --force"
+alias update="brew update ; brew upgrade ; brew upgrade --cask; brew cleanup ; tldr --update ; rm -rf ~/Downloads/Software/bypass-paywalls-chrome-clean-master && wget -O bypass.zip 'https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass-paywalls-chrome-clean-master.zip&inline=false' && unzip bypass.zip -d ~/Downloads/Software/bypass-paywalls-chrome-clean-master; rm bypass.zip ; kubectl krew update ; kubectl krew upgrade ; rustup update --force ; cargo install-update -a ; cd ~/Downloads/Software/neovim && git pull && sudo CMAKE_BUILD_TYPE=Release make install; cd ~/.config/nvim ; nuclei -ut ; /usr/bin/find ~/Downloads/Software -maxdepth 4 -name '.git' -prune -type d -print| sed 's/.git//'| parallel -j8 'echo {} && git -C {} pull' ; brew upgrade --cask wezterm@nightly --greedy-latest --force"
 alias update_bypass='rm -rf ~/Downloads/Software/bypass-paywalls-chrome-clean-master && wget -O bypass.zip "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass-paywalls-chrome-clean-master.zip&inline=false" && unzip bypass.zip -d ~/Downloads/Software/bypass-paywalls-chrome-clean-master; rm bypass.zip'
 alias update_lvim='git -C "~/.local/share/lunarvim/lvim" pull ; find ~/.local/share/lunarvim/site/pack/packer -maxdepth 2 -mindepth 2 -type d -exec ls -d {} \; -exec git -C {} pull \; ; cd "~/Downloads/Software/neovim" && git pull && sudo CMAKE_BUILD_TYPE=Release make install ; cd ~/.config/lvim'
 
@@ -218,3 +218,122 @@ export AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 alias curl="curl -A '$AGENT'"
 alias wget="wget -U '$AGENT'"
 alias nmap="nmap --script-args=\"http.useragent='$AGENT'\""
+alias lsbc="lsblk | bat -l conf -p"
+pss() {
+  if (( $# == 0 )); then
+    echo "usage: pss <pattern...>" >&2
+    return 2
+  fi
+
+  local q="$*"
+
+  # If pstree exists, show pstree -s for "root" matching PIDs (avoid duplicates)
+  if command -v pstree >/dev/null 2>&1; then
+    local -a pids
+    local -A ismatch
+    local -A keep
+    local pid
+
+    # Match against full command line (-f). -i for case-insensitive.
+    # Note: pgrep treats the pattern as an ERE; quote your pattern if needed.
+    pids=("${(@f)$(pgrep -if -- "$q" 2>/dev/null)}")
+
+    if (( ${#pids} == 0 )); then
+      echo "pss: no matches for: $q" >&2
+      return 1
+    fi
+
+    # Mark all matching pids
+    for pid in "${pids[@]}"; do
+      ismatch[$pid]=1
+    done
+
+    # Keep only those matches whose ancestor chain does NOT contain another match.
+    # (i.e., top-most/representative matches)
+    for pid in "${pids[@]}"; do
+      local cur="$pid" ppid=""
+      local has_match_ancestor=0
+
+      while :; do
+        ppid="$(ps -o ppid= -p "$cur" 2>/dev/null | tr -d ' ')"
+        [[ -z "$ppid" || "$ppid" == "0" || "$ppid" == "$cur" ]] && break
+        if [[ -n "${ismatch[$ppid]}" ]]; then
+          has_match_ancestor=1
+          break
+        fi
+        cur="$ppid"
+      done
+
+      (( has_match_ancestor == 0 )) && keep[$pid]=1
+    done
+
+    {
+      for pid in ${(ok)keep}; do
+        echo "== pstree -s $pid =="
+        pstree -s "$pid"
+        echo
+      done
+    } | bat -l conf -p
+
+  else
+    # Fallback: original highlighted ps output
+    COLUMNS=${COLUMNS:-300} ps -axww -o pid,ppid,user,%cpu,%mem,start,time,command \
+      | grep -i -- "$q" \
+      | grep -v -- "grep" \
+      | bat -l conf -p
+  fi
+}
+rename_from_source() {
+  local file="$1"
+  
+  if [[ ! -f "$file" ]]; then
+    echo "File not found"
+    return 1
+  fi
+
+  # Extract first URL from metadata
+  local url
+  url=$(mdls -name kMDItemWhereFroms "$file" \
+        | sed -n 's/.*"\(http[^"]*\)".*/\1/p' \
+        | head -n 1)
+
+  if [[ -z "$url" ]]; then
+    echo "No valid URL found in kMDItemWhereFroms."
+    return 1
+  fi
+
+  echo "Getting title from: $url"
+
+  local title
+
+  # If YouTube → use yt-dlp (reliable)
+  if [[ "$url" == *"youtube.com"* || "$url" == *"youtu.be"* ]]; then
+    title=$(yt-dlp --get-title "$url" 2>/dev/null)
+  else
+    # fallback to basic HTML title scraping
+    title=$(curl -Ls "$url" \
+            | grep -i "<title>" \
+            | head -n 1 \
+            | sed -E 's/.*<title>(.*)<\/title>.*/\1/')
+  fi
+
+  if [[ -z "$title" ]]; then
+    echo "Could not extract title."
+    return 1
+  fi
+
+  # Sanitize filename for macOS
+  local clean
+  clean=$(echo "$title" \
+          | tr '/:\?%*|"<>’' '-' \
+          | tr -d '\n' \
+          | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+
+  local ext="${file##*.}"
+  local newname="${clean}.${ext}"
+
+  echo "Renaming to:"
+  echo "$newname"
+
+  mv -i -- "$file" "$newname"
+}
