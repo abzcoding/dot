@@ -18,6 +18,12 @@ final_space = true
   newline = true
 
   [[blocks.segments]]
+    template = "{{ if ne .Context \"default\" }}\u26f5 {{ $user := .User }}{{ if eq $user \"oidc\" }}{{ $user = \"2fa\" }}{{ end }}{{ if $user }}{{ $user }} on {{ end }}{{ .Context }}{{ if .Namespace }} :: {{ .Namespace }}{{ end }} {{ end }}"
+    foreground = "#87AF87"
+    type = 'kubectl'
+    style = 'plain'
+
+  [[blocks.segments]]
     template = '{{ .Path }}'
     foreground = '#77C3B6'
     background = 'transparent'
@@ -44,7 +50,7 @@ final_space = true
       commit_icon = '@'
 
   [[blocks.segments]]
-    template = "<#ffffff>via</> \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} "
+    template = "<#ffffff>via</> \ue235 {{ if .Error }}{{ .Error }}{{ else }}v{{ .Full }}{{ if .Venv }} ({{ .Venv }}){{ end }}{{ end }} "
     foreground = "#F7DCA0"
     type = 'python'
     style = 'plain'
@@ -65,12 +71,6 @@ final_space = true
     template = "<#ffffff>via</> \ue620 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} "
     foreground = "#77A3F8"
     type = 'lua'
-    style = 'plain'
-
-  [[blocks.segments]]
-    template = "<#ffffff>via</> \uf308 {{.Context}} :: {{if .Namespace}}{{.Namespace}}{{else}}default{{end}} "
-    foreground = "#316ce4"
-    type = 'kubectl'
     style = 'plain'
 
 [[blocks]]
