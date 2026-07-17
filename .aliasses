@@ -337,3 +337,28 @@ rename_from_source() {
 
   mv -i -- "$file" "$newname"
 }
+compresspdf() {
+    /opt/homebrew/bin/gs -q -dSAFER -dBATCH -dNOPAUSE \
+    -sDEVICE=pdfwrite \
+    -dCompatibilityLevel=1.7 \
+    -dPDFSETTINGS=/${3:-screen} \
+    -dWriteXRefStm=true \
+    -dWriteObjStms=true \
+    -dDetectDuplicateImages=true \
+    -dMaxInlineImageSize=0 \
+    -dDownsampleColorImages=true \
+    -dColorImageDownsampleType=/Average \
+    -dColorImageResolution=120 \
+    -dDownsampleGrayImages=true \
+    -dGrayImageDownsampleType=/Average \
+    -dGrayImageResolution=120 \
+    -dDownsampleMonoImages=true \
+    -dMonoImageDownsampleType=/Subsample \
+    -dMonoImageResolution=300 \
+    -dAutoFilterColorImages=false \
+    -dColorImageFilter=/DCTEncode \
+    -dAutoFilterGrayImages=false \
+    -dGrayImageFilter=/DCTEncode \
+    -sOutputFile="$2" \
+    "$1"
+}

@@ -73,6 +73,12 @@ final_space = true
     type = 'lua'
     style = 'plain'
 
+  [[blocks.segments]]
+    template = '<#ffffff>via</>  {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} '
+    foreground = "#A8B9CC"
+    type = 'c'
+    style = 'plain'
+
 [[blocks]]
   type = 'rprompt'
   overflow = 'hidden'
