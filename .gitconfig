@@ -151,6 +151,9 @@
 	required = true
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
+[url "ssh://git@github-secretive/"]
+	pushInsteadOf = https://github.com/
+	pushInsteadOf = ssh://git@github.com/
 [init]
 	defaultBranch = main
 [gpg]

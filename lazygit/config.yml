@@ -188,7 +188,7 @@ customCommands:
       - type: 'input'
         title: 'commit message'
         initialValue: ''
-    command: "git commit -S -s -m '{{index .PromptResponses 0}}'"
+    command: "git commit -S -s -m {{index .PromptResponses 0 | quote}}"
     context: 'global'
     loadingText: 'signOff Commit'
 services: {}
