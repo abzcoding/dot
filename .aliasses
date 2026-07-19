@@ -337,6 +337,7 @@ rename_from_source() {
 
   mv -i -- "$file" "$newname"
 }
+
 compresspdf() {
     /opt/homebrew/bin/gs -q -dSAFER -dBATCH -dNOPAUSE \
     -sDEVICE=pdfwrite \
