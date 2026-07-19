@@ -154,6 +154,9 @@
 [init]
 	defaultBranch = main
 [gpg]
-	program = /opt/homebrew/bin/gpg
+	format = ssh
+#	program = /opt/homebrew/bin/gpg
+[gpg "ssh"]
+    allowedSignersFile = ~/.gitallowedsigners
 [pull]
 	rebase = true

@@ -3,6 +3,7 @@ if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
 fi
 source ~/.env
 eval "$(/opt/homebrew/bin/brew shellenv)"
+export SSH_AUTH_SOCK=~/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 export GOPATH=$HOME/dev
 export PATH=$PATH:$HOME/.alire/bin
 export PATH=$PATH:$GOPATH/bin

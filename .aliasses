@@ -362,3 +362,4 @@ compresspdf() {
     -sOutputFile="$2" \
     "$1"
 }
+alias ns='nvim --clean --noplugin -i NONE'
