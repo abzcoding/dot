@@ -1,14 +1,17 @@
 session: local
-
-root: ~/
+attach: true
 
 windows:
   - name: local
+    root: ~/.config/nvim
     commands:
-      - cd ~/.config/nvim
+      - clear
   - name: Notes
+    root: ~/Documents/Notes
     commands:
-      - cd ~/Documents/Notes
-  - name: Pentest
+      - clear
+  - name: Dev
+    root: ~/dev/src/github.com/abzcoding/ctour
+    selected: true
     commands:
-      - cd ~/
+      - export NVIM_OFFLINE=1

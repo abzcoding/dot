@@ -35,7 +35,7 @@ final_space = true
       style = 'folder'
 
   [[blocks.segments]]
-    template = ' <#ffffff>on</> {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }} <#EE7398>[✘]</>{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
+    template = ' <#ffffff>on</> {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }} <#EE7398>[{{ if .Staging.Changed }}+{{ end }}{{ if .Working.Changed }}?{{ end }}]</>{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
     foreground = "#E8ACDA"
     type = 'git'
     style = 'plain'
